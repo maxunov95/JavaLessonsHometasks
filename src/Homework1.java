@@ -103,5 +103,80 @@ public class Homework1 {
 
         //Используемые технологии: String.find, String.replaceAll, String.split, String.join, String.contains, String.substring
         //Регулярные выражения, класс StringBuilder
+
+        String text1 = "<client>(Какие то данные)<data>79991113344;test@yandex.ru;Иванов Иван Иванович</data></client>";
+        String text2 = "<client>(Какие то данные)<data>Иванов Иван Иванович;79991113344</data></client>";
+        String text3 = "<client>(Какие то данные)<data></data></client>";
+        String text4 = "<client>(Какие то данные)<data>79991113344;левый текст;t.q.q.w@mail.ru;test@yandex.ru;Иванов Иван Иванович</data></client>";
+
+        printFormatString(text1);
+        printFormatString(text2);
+        printFormatString(text3);
+        printFormatString(text4);
+    }
+
+    static void printFormatString(String text) {
+
+        String formatText = text;
+
+        if (text.contains("<client>") && text.contains("</client>")) {
+
+            int indStartData = text.indexOf("<data>");
+            int indEndData = text.indexOf("</data>");
+
+            if (indStartData >= 0 && indEndData >= 0) {
+
+                String textData = text.substring(indStartData + 6, indEndData);
+                String[] textParts = textData.split(";");
+
+                if (textParts.length != 0) {
+
+                    for (int i = 0; i < textParts.length; i++) {
+
+                        String textPart = textParts[i];
+
+                        int indEmail = textPart.indexOf("@");
+
+                        if (textPart.matches("^\\d{11}$")) {
+
+                            textPart = textPart.substring(0, 4) + "***" + textPart.substring(7);
+
+                        } else if (indEmail >= 0) {
+
+                            String textEmailFirstPart = textPart.substring(0, indEmail - 1) + "*@";
+                            String textEmailSecondPart = textPart.substring(indEmail);
+
+                            String[] textEmailEndParts = textEmailSecondPart.split("\\.");
+                            if (textEmailEndParts.length == 2) {
+
+                                textPart = textEmailFirstPart
+                                        + "*".repeat(textEmailEndParts[0].length() - 1)
+                                        + "." + textEmailEndParts[1];
+                            }
+
+                        } else {
+
+                            String[] nameParts = textPart.split(" ");
+                            if (nameParts.length == 3) {
+
+                                textPart = nameParts[0].charAt(0)
+                                        + "*".repeat(nameParts[0].substring(0, nameParts[0].length() - 2).length())
+                                        + nameParts[0].substring(nameParts[0].length() - 1)
+                                        + " " + nameParts[1] + " "
+                                        + nameParts[2].charAt(0) + ".";
+                            }
+                        }
+
+                        textParts[i] = textPart;
+                    }
+
+                    formatText = text.substring(0, indStartData) + "<data>"
+                            + String.join(";", textParts)
+                            + "</data></client>";
+                }
+            }
+        }
+
+        System.out.println(formatText);
     }
 }
