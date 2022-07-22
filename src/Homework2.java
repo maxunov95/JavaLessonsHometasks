@@ -214,11 +214,11 @@ public class Homework2 {
 
         HashMap<Integer, HashMap<String, String[]>> incomingData = new HashMap();
 
-        HashMap data1 = new HashMap<String, String[]>();
+        HashMap<String, String[]> data1 = new HashMap();
         data1.put("out", new String[]{"К474СЕ178", "М231АВ301"});
         data1.put("input", new String[]{"А222РТ178", "М519АВ12"});
 
-        HashMap data2 = new HashMap<String, String[]>();
+        HashMap<String, String[]> data2 = new HashMap();
         data2.put("out", new String[]{"К722АВ12", "А222РТ178"});
         data2.put("input", new String[]{"М001АВ01", "А023РВ73"});
 
