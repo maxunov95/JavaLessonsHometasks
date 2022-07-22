@@ -1,8 +1,6 @@
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 
 public class Homework2 {
     public static void main(String[] args) {
