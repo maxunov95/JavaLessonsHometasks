@@ -227,7 +227,6 @@ public class Homework3 {
         HashMap<String, HashMap<String, Double>> totaReports = new HashMap<>();
 
         String filter = "pyterochka";
-
         reports.forEach((name, monthsData) -> {
 
             final double[] _totalIncomes = {0};
