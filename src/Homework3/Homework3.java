@@ -226,31 +226,33 @@ public class Homework3 {
 
         HashMap<String, HashMap<String, Double>> totaReports = new HashMap<>();
 
+        String filter = "pyterochka";
+
         reports.forEach((name, monthsData) -> {
 
             final double[] _totalIncomes = {0};
             final double[] _totalOutcomes = {0};
 
-            if (name.equals("pyterochka")) {
+            if (name.equals(filter)) {
                 System.out.println("Прибыль по магазину " + name + " по месяцам:");
             }
 
             monthsData.forEach((month, data) -> {
                 double incomes = data.get("incomes");
                 _totalIncomes[0] += incomes;
-                if (name.equals("pyterochka")) {
+                if (name.equals(filter)) {
                     System.out.println(month + ": " + incomes);
                 }
             });
 
-            if (name.equals("pyterochka")) {
+            if (name.equals(filter)) {
                 System.out.println("Расходы по магазину " + name + " по месяцам:");
             }
 
             monthsData.forEach((month, data) -> {
                 double outcomes = data.get("outcomes");
                 _totalOutcomes[0] += outcomes;
-                if (name.equals("pyterochka")) {
+                if (name.equals(filter)) {
                     System.out.println(month + ": " + outcomes);
                 }
             });
@@ -270,7 +272,7 @@ public class Homework3 {
         // Расходы perekrestok за весь период: 1734220.00
         // .. и тд
         totaReports.forEach((name, totalData) -> {
-            if (name.equals("pyterochka")) {
+            if (name.equals(filter)) {
                 System.out.println("Прибыль по магазину " + name + " за весь период:" + totalData.get("incomes"));
                 System.out.println("Расходы по магазину " + name + " за весь период:" + totalData.get("outcomes"));
             }
